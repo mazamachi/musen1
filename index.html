@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Basic -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="robots" content="index, follow, archive" />
+    <meta name="referrer" content="always" />
+
+    <!-- Content -->
+    <meta name="description" property="description"
+          content="無線通信応用工学10/6" />
+    <meta name="author" content="まざっち" />
+
+    <title>musen-10-06</title>
+
+    <!-- Includes -->
+        <!-- Javascripts -->
+<script type="text/javascript"
+        src="includes/katex/build/katex/katex.min.js"></script>
+
+<!-- Stylesheets -->
+<link media="all" rel="stylesheet" type="text/css"
+      href="includes/katex/build/katex/katex.min.css" />
+
+<!-- Configure -->
+<script>var readyStateCheckInterval=setInterval(function(){if(document.readyState==="complete"){var e=document.getElementsByClassName("equation");Array.prototype.forEach.call(e,function(e){katex.render("\\displaystyle{"+e.getAttribute("data-expr")+"}",e)});clearInterval(readyStateCheckInterval)}},10)</script>
+        <!-- Javascripts -->
+<script type="text/javascript"
+        src="includes/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript"
+        src="includes/d3/d3.min.js"></script>
+<script type="text/javascript"
+        src="includes/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+        src="includes/metrics-graphics/js/metricsgraphics.min.js"></script>
+
+<!-- Stylesheets -->
+<link media="all" rel="stylesheet" type="text/css"
+      href="includes/bootstrap/dist/css/bootstrap.css" />
+<link media="all" rel="stylesheet" type="text/css"
+      href="includes/metrics-graphics/css/metricsgraphics.css" />
+<link media="all" rel="stylesheet" type="text/css"
+      href="includes/metrics-graphics/css/metricsgraphics-demo.css" />
+        <!-- Javascripts -->
+<script type="text/javascript"
+        src="includes/prism/prism.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-bash.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-c.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-css.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-go.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-java.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-javascript.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-markup.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-perl.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-php.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-python.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-ruby.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-scala.min.js"></script>
+<script type="text/javascript"
+        src="includes/prism/components/prism-sql.min.js"></script>
+
+<!-- Stylesheets -->
+<link media="all" rel="stylesheet" type="text/css"
+      href="includes/prism/themes/prism-okaidia.css" />
+</head>
+<body>
+    <article id="presentation">
+        <section >
+            <h1 id="section">無線通信応用工学 10-06</h1>
+<p>まざっち</p>
+        </section>
+        <section >
+            <h1 id="section">大事そうなこと (課題に関係有ること)</h1>
+<ul>
+  <li>自由空間減衰</li>
+  <li>平均遅延・RMS遅延スプレッド</li>
+  <li>レイリーフェージング</li>
+</ul>
+        </section>
+        <section >
+            <h1 id="section">はしょったこと</h1>
+<ul>
+  <li>周波数帯やその利用方法</li>
+  <li>シャドウイング・マルチパス</li>
+</ul>
+        </section>
+        <section >
+            <h1 id="decibel">decibel</h1>
+<div class="equation" data-expr="10 \log_{10} ( \frac{P_1}{P_2} )" style="font-size: 150%"></div>
+<div class="equation" data-expr="\neq 20 \log_{10} (\frac{P_1}{P_2})" style="font-size: small"></div>
+<p>電力じゃないので、二乗しない</p>
+        </section>
+        <section >
+            <h1 id="section">電波の伝播の基礎</h1>
+<ol>
+  <li>反射  <br />
+ (波長より)大きい物体にぶつかる</li>
+  <li>回折  <br />
+ 角にぶつかる</li>
+  <li>散乱  <br />
+ (波長より)小さい物体にぶつかる</li>
+</ol>
+        </section>
+        <section >
+            <h1 id="section">電波の伝播の仕方</h1>
+<ol>
+  <li>地表波伝播
+    <ul>
+      <li>地表にそって伝わる。</li>
+      <li>長い波</li>
+    </ul>
+  </li>
+  <li>空間波電波
+    <ul>
+      <li>電離層で反射する</li>
+    </ul>
+  </li>
+  <li>見通し電波
+    <ul>
+      <li>アンテナからアンテナへ直線的に伝わる</li>
+      <li>見通し電波距離：
+        <div class="equation" data-expr="d = \sqrt{Kh}"></div>
+        <ul>
+          <li>d: アンテナからの水平距離(km)</li>
+          <li>K: 回折を考慮した補正係数，rule of thumb K = 4/3</li>
+          <li>h:アンテナの高さ(m)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+        </section>
+        <section >
+            <h1 id="section">自由空間減衰</h1>
+
+<p>送受信に無指向性アンテナを使うと、減衰する(いろんな方向に飛ぶから？)</p>
+
+<div class="equation" data-expr="P_r =  \left( \frac{\lambda}{4\pi r} \right)^2 P_t
+"></div>
+
+<p>各種パラメータの意味はスライド参照<br />
+→課題2(<span class="equation" data-expr=" P_t "></span> を求めれば良い)</p>
+        </section>
+        <section >
+            <h1 id="section">雑音の種類</h1>
+<ul>
+  <li><strong>熱雑音</strong>
+    <div class="equation" data-expr="
+  N_0 = kT (W/Hz)
+  "></div>
+    <ul>
+      <li><span class="equation" data-expr="   N_0   " style="font-size: small"></span> = noise power density in watts per 1 Hz of bandwidth</li>
+      <li>k = Boltzmann‘s constant = 1.3803 × 10-23 J/K</li>
+      <li>T = temperature, in kelvins (absolute temperature)</li>
+    </ul>
+  </li>
+  <li>混変調雑音</li>
+  <li>インパルス雑音</li>
+</ul>
+        </section>
+        <section >
+            <ul>
+  <li><strong>平均遅延</strong>(mean excess delay)
+    <div class="equation" data-expr="
+  \overline{\tau} = \frac{
+      \int_0^\infty \tau A_c(\tau) d\tau
+  }{
+      \int_0^\infty A_c(\tau) d\tau
+  }
+  "></div>
+  </li>
+  <li><strong>RMS遅延スプレッド</strong>(RMS delay spread)
+    <div class="equation" data-expr="
+  \tau_{rms} = \sqrt{\frac{
+      \int_0^\infty (\tau-\overline{\tau})^2 A_c(\tau) d\tau
+  }{
+      \int_0^\infty A_c(\tau) d\tau
+  }}
+  "></div>
+  </li>
+  <li>→<strong>課題1(ii),3(i)</strong></li>
+</ul>
+        </section>
+        <section >
+            <h1 id="reyleigh-fading">レイリーフェージング(Reyleigh Fading)</h1>
+<p>(よく判ってない。ごめん。)</p>
+<div class="equation" data-expr="
+e(t) = \sum_{n=1}^{N}e_n(t)
+	= Re \left( \sum_{n=1}^{N}z_n(t) 
+		\exp{j(2\pi f_c t)} \right)
+"></div>
+<p>(e(t):受信波、x_n(t):複素包絡線)<br />
+として、受信波の同相成分、直行成分をそれぞれx,yとすれば、</p>
+<div class="equation" data-expr="
+e(t) = x(t)\cos{2\pi f_c t} 
+	- y(t)\sin{2\pi f_c t}
+"></div>
+<p>となり、結合確率密度関数は</p>
+<div class="equation" data-expr="
+p(x,y) = \frac{1}{2\pi b_0}
+	\exp\left(
+		- \frac{
+			x^2+y^2
+		}{
+			2b_0
+		}
+	\right)
+"></div>
+        </section>
+        <section >
+            <p>x=Rcos(θ),y=Rsin(θ)とすれば、確率密度変換により、</p>
+<div class="equation" data-expr="
+p(R, \theta) = \frac{R}{2\pi b_0}
+	\exp{- \frac{R^2}{2b_0}}
+"></div>
+<p>となり、これはp(R)とp(θ)に分割できるので、</p>
+<div class="equation" data-expr="
+p(R) = \frac{R}{b_0}
+	\exp{- \frac{R^2}{2b_0}}
+"></div>
+<div class="equation" data-expr="
+p(\theta) = \frac{1}{2\pi}
+"></div>
+<p>前者が、「レイリー分布」</p>
+
+<p>→多分課題3(ii)(iii)で使う……？</p>
+        </section>
+        <section >
+            <h1 id="section">ちなみに……</h1>
+<p>このスライドを作るのに使ったもの</p>
+
+<ul>
+  <li><strong><a href="https://github.com/maciejczyzewski/hyhyhy/">hyhyhy</a></strong>
+    <ul>
+      <li>ruby製のmarkdownをスライド風のhtmlにするparser</li>
+    </ul>
+  </li>
+  <li>便利っぽいけど、なんだかんだ面倒くさい
+    <ul>
+      <li>数式がmathjaxじゃなくて <span class="equation" data-expr="   \KaTeX   "></span>
+        <ul>
+          <li>mathjaxに比べて圧倒的に早い</li>
+        </ul>
+      </li>
+      <li>結局サイズ調整とか色とかはstyleで指定する</li>
+      <li>画像貼るのはlink</li>
+      <li>中央揃えなので教材向けではない</li>
+    </ul>
+  </li>
+  <li>htmlとか苦じゃないなら楽かも</li>
+</ul>
+        </section>
+        <section >
+            <p>KaTeXだと、</p>
+
+<div class="highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span style="color:#070;font-weight:bold">&lt;div</span> <span style="color:#b48">class</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">equation</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">data-expr</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#D20">\overline{\tau} = \frac{</span></span>
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span><span style="background-color:hsla(0,100%,50%,0.05)">        <span style="color:#D20">\int_0^\infty \tau A_c(\tau) d\tau</span></span>
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span><span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#D20">}{</span></span>
+<span class="line-numbers"><a href="#n5" name="n5">5</a></span><span style="background-color:hsla(0,100%,50%,0.05)">        <span style="color:#D20">\int_0^\infty A_c(\tau) d\tau</span></span>
+<span class="line-numbers"><a href="#n6" name="n6">6</a></span><span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#D20">}</span></span>
+<span class="line-numbers"><a href="#n7" name="n7">7</a></span><span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/div&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<p>みたいに書く</p>
+        </section>
+    </article>
+
+    <!-- Stylesheets -->
+    <link media="all" rel="stylesheet" type="text/css"
+          href="stylesheets/main.css" />
+
+    <!-- Javascripts -->
+    <script type="text/javascript" src="javascripts/main.js"></script>
+    <script>hyhyhy.from('#presentation', { bullets: "ol li, .bullet", hash: true, keys: true, fullscreen: true, progress: true, scale: true, state: true, touch: true });</script>
+</body>
+</html>
